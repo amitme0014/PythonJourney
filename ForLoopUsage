@@ -1,0 +1,15 @@
+#This programme uses for loop in python
+for i in [1,2,3,4,5]:
+  print(i)
+
+#Below programm prints all the characters in string
+
+for i in "Hello Amit":
+  print(i)
+
+#Below programm uses range module to iterate n no. of times,plz note that i variable will not be used  in this case and its not necessary to be used
+
+for i in range(4):
+  print(i)
+  print("This sentence will be printed 4 times on screen")
+  print("Print no.",i)
