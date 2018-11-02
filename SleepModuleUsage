@@ -1,0 +1,5 @@
+#This programm uses sleep module to pause the execution for few sseconds
+import time
+print("After this message, next message will be printed after 6 seconds")
+time.sleep(6)
+print("This message printed after 6 seconds")
