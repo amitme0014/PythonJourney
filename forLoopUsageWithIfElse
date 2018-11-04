@@ -1,0 +1,16 @@
+#This programm implements for usage loop with  if else condition
+from datetime import datetime
+import time
+
+odds=[1,3,12,23,14,19]
+
+#Now we want to iterate below blocks for five times, so we will use range function
+
+for i in range(5):
+  time.sleep(2)
+  time.sleep(1)
+  currentMin=datetime.today().second
+  if currentMin in odds:
+    print("Current minute Found in odds")
+  else:
+    print("Current Minute not found in odds")
