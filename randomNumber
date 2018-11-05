@@ -1,0 +1,4 @@
+#This programm prints random value between any two digits, It uses randint function from random module
+import random
+i=random.randint(2,4)
+print(i)
