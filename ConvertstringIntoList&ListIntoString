@@ -1,0 +1,9 @@
+#Converting string into list
+phrase="Don't panic"
+print(phrase,'will be converted into list')
+plist=list(phrase)
+print(plist)
+print('*************************************************************')
+print(plist,'will be converted into string again')
+new_phrase=''.join(plist)
+print(new_phrase)
