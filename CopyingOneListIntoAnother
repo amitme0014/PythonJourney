@@ -1,0 +1,18 @@
+#This code shows copying one list into another
+list1=[1,2,3,4,]
+list2=[]
+list2=list1
+print(list1,"list1 values")
+print(list2,"list2 values after copying list1 into list2") 
+#But above code has one bug, when we will try to append some value into any of the list , the other one will reflect the same changes, as they are referencing to same address
+#Lets check this by appending a value into any of the list and then printing both the list
+list1.append("5")
+print(list1,"printing the values of list1, after apppending 5")
+print(list2,"list2 also prints 5")
+#To overcome this problem, we use copy method 
+list3=[]
+list3=list2.copy()
+print(list3,"printing list3 before appending a value in list2")
+list2.append('9')
+print(list2,"Appending 9 into list2")
+print(list3,"9 would not have been appended in list2")
