@@ -1,0 +1,10 @@
+vowels=['a','e','i','o','u']
+words="Milliways"
+#for letter in words:
+if '4' in vowels:
+    print(letter)
+elif 'z'  not in vowels:
+    vowels.append('z')
+    print(vowels)
+else:
+    print("Third option chosen")
