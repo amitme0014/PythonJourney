@@ -1,0 +1,20 @@
+#Converting string into list and using various functionallity such as extend,pop,remove and all
+phrase="Don't panic"
+print(phrase,'will be converted into list')
+plist=list(phrase)
+print(plist)
+print('*******************************Performing some operations****************************')
+for i in range(4):
+  plist.pop() #This will pop last 4 digits of plist
+print(plist,"line 9")
+plist.pop(0) #This will pop out the values from index position 0,In this example... it will remove D
+plist.remove("'") #This will find the apostrophee sign and removes from the list
+print(plist,"line 12")
+plist.extend([plist.pop(),plist.pop()])
+print(plist,"line 14")
+plist.insert(2,plist.pop(3))
+print(plist,"line 16")
+print('*************************************************************')
+print(plist,'will be converted into string again')
+new_phrase=''.join(plist)
+print(new_phrase,"line 20")
