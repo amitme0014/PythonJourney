@@ -1,0 +1,7 @@
+#This code helps in understanding start,stop and step functionallity in list, [start,stop,step]
+booklist=['T','h','e','g','a','l','a','x','y']
+print(booklist[3]) #This will printt the element at 3rd index
+print(booklist[0:10:2]) #print values from index 0 to index 10 and consecutively second one
+print(booklist[-6:]) #prints last 6 values from booklist
+print(booklist[::-1]) #prints the value in reverse
+print(booklist[::-2])#prints value in reverse every second value
