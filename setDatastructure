@@ -1,0 +1,15 @@
+#using set datastructure
+#list datastructure is used by []
+#set datastructure is used by {}
+#set has the speciallity of removing duplicates
+vowels={'a','e','i','o','u','u'}
+print(vowels)
+#Another way of declaring set is set module
+vowels1=set('aeioou')
+print(vowels1)
+#using set methods such as union.difference,intersection etc
+word="hello"
+print(word)
+print("Now the h,e,l,l,o will be added in set")
+unionWord=vowels.union(set(word))
+print(unionWord) 
