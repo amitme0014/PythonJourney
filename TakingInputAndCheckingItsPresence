@@ -1,0 +1,13 @@
+#This code takes the input by user and checks, whether that word exists in vowels, if it exists...it will store the value in find and prints it
+vowels=['a','e','i','o','u']
+word=input("Provide a word to search ")
+found={}
+
+for i in word:
+  if word in vowels:
+    found.setdefault(i,0)
+    found[i]+=1
+    print(found)
+  else:
+    print("word was not found in vowels")
+ 
