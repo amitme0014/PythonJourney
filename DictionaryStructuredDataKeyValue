@@ -1,0 +1,7 @@
+#This code uses dictionary, which is used for storing structured data
+person3={ 'Name' : 'Amit',
+          'Gender' : 'Male',
+                             }
+
+print(person3) #This will print the ley value pairs
+print(person3['Gender']) #This will print the value of gender from person3 dictionary
