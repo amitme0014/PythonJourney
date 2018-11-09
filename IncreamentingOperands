@@ -31,4 +31,12 @@ if 'bananas' in fruits:
 else:
   print("bananas not found")
 print("***********************************************************")
- 
+if 'pears'  not in fruits:
+  fruits['pears']=0
+  fruits['pears']+=1
+  print(fruits)
+else:
+  print("************************************************************")
+if 'guava' not in fruits:
+  fruits.setdefault('guava', 0) #used for initializing the list, one liner command it is add guava key with 0 value
+  print(fruits)
