@@ -1,0 +1,7 @@
+#using tuple which is a fixed data structure
+#Here when we try to assign some value in the 
+thisTuple=('a','e','i')
+print(thisTuple)
+#thisTuple.append('z')
+#print(thisTuple)
+thisTuple[2]='z'
