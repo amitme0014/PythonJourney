@@ -1,0 +1,7 @@
+#This code tells the usage of function in python
+def tupleDatastructure():
+  thisTuple=('a','e','i')
+  print(thisTuple)
+print("Executing the function now")
+tupleDatastructure()
+
