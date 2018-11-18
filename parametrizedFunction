@@ -1,0 +1,14 @@
+#This code uses a function, which takes string as a parameter and prints ithe name, while calling a function with particular string
+def printName(word):
+  print("Hello",word)
+#Calling the function now, passing Amit as string
+printName("Amit")
+printName("Ankit")
+
+#Below function takes two parameters and prints the value of addition
+def Addition(x,y):
+  z=x+y
+  print(z)
+Addition(4,5)
+Addition(6,7)
+
