@@ -5,3 +5,10 @@ we can do
           import datetime 
           dir(datetime)
    >>>o/p:  ['MAXYEAR', 'MINYEAR', '__doc__', '__file__', '__name__', '__package__', 'date', 'datetime', 'datetime_CAPI', 'time', 'timedelta', 'tzinfo']
+          
+          Ab agar maan lo ki hamein ye dekhna hai ki datetime ke attribute k andar kya method hain?
+          toh 
+          dir(datetime.datetime.now) kar do
+          
+          Important module in python
+          
