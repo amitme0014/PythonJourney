@@ -1,0 +1,7 @@
+Maan lo hamein koi module ka naam pata hai, aur hamein ye jaan na ki wo module kon kon se function contain karta hai toh:
+we can do
+          dir(modulename).  //In python
+          eg 
+          import datetime 
+          dir(datetime)
+   >>>o/p:  ['MAXYEAR', 'MINYEAR', '__doc__', '__file__', '__name__', '__package__', 'date', 'datetime', 'datetime_CAPI', 'time', 'timedelta', 'tzinfo']
