@@ -1,0 +1,26 @@
+import shutil
+from shutil import make_archive
+import os
+from os import path
+from zipfile import ZipFile
+
+################## Lets copy the textfile.txt from one place to another ##################
+def function():
+        if path.exists("textfile.txt"):
+           src=path.realpath("textfile.txt")
+           dst=src+".backup"
+##################### Copies the file without metadata #################################
+           shutil.copy(src,dst)
+##################### Below command copies the file with metadata i.e same time etc ######################
+           shutil.copystat(src,dst)
+##################### Renaming the file ######################################
+#          os.rename("textfile.txt","name_changed_textfile.txt")
+##################### Lets try to create a zip file #########################
+           root_dir, tail = path.split(src)
+           print(root_dir)
+           print(tail)
+           make_archive("archive","zip",root_dir)
+############################ Using Zip file to add selected files #################
+        with ZipFile("testzip.zip","w") as newzip:
+         newzip.write("textfile.txt")
+function()
