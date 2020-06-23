@@ -1,0 +1,26 @@
+In [117]: # Python3 code to demonstrate  
+     ...: # to count words in string  
+     ...: # using split()  
+     ...:  
+     ...: # initializing string  
+     ...: test_string = "Geeksforgeeks is best Computer Science Portal best best" 
+     ...:  
+     ...: # printing original string  
+     ...: print ("The original string is : " + test_string)  
+     ...:  
+     ...: # using split()  
+     ...: # to count words in string  
+     ...: res = (test_string.split())  
+     ...:  
+     ...: print(res) 
+     ...:  
+     ...: count={} 
+     ...:  
+     ...: for char in res: 
+     ...:    count.setdefault(char,0) 
+     ...:    # print(char) 
+     ...:    count[char]=count[char]+1 
+     ...:  
+     ...: pprint.pprint('Best is ' +count['best']+'times') 
+     ...: # printing result  
+     ...: print ("The number of words in string are : " + str(res))  
