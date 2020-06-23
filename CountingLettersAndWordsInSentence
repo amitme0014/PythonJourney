@@ -1,4 +1,4 @@
-In [117]: # Python3 code to demonstrate  
+In [124]: # Python3 code to demonstrate  
      ...: # to count words in string  
      ...: # using split()  
      ...:  
@@ -21,6 +21,9 @@ In [117]: # Python3 code to demonstrate
      ...:    # print(char) 
      ...:    count[char]=count[char]+1 
      ...:  
-     ...: pprint.pprint('Best is ' +count['best']+'times') 
+     ...: pprint.pprint('Best is ' +str(count['best'])+' times') 
+     ...: stringer=pprint.pformat('Best is ' +str(count['best'])+' times') 
+     ...: print(stringer) 
      ...: # printing result  
      ...: print ("The number of words in string are : " + str(res))  
+     ...:  
