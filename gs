@@ -1,1 +1,0 @@
-https://neosmart.net/wiki/mbr-boot-process/
