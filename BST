@@ -1,0 +1,61 @@
+class Node:
+        def __init__(self,key):
+            self.val=key
+            self.left=None
+            self.right=None
+            
+def insert(root,node):
+    if root is None:
+        root=node
+        
+    else:
+        if node.val>root.val:
+            if root.right is None:
+                root.right=node
+            else:
+                insert(root.right,node)
+        else:
+            if root.left is None:
+                root.left=node
+            else:
+                insert(root.left,node)
+                
+def find(root,node_value):
+    if root.val == node_value:
+        return True
+    else:
+        if node_value > root.val:
+            return find(root.right,node_value)
+        else:
+            return find(root.left,node_value)
+            
+# A utility function to do inorder tree traversal 
+def inorder(root): 
+    if root: 
+        inorder(root.left) 
+        print(root.val) 
+        inorder(root.right) 
+    
+    
+object=Node(4)
+#root se inka matlab ek object so yahan jo object pass kar rae, wahi wahan ja k root ban jayega
+#Object mein naya node add karna hai toh Node(x) kar k object jayega
+insert(object,Node(2))
+insert(object,Node(7))
+insert(object,Node(1))
+insert(object,Node(3))
+
+              
+print(find(object,4))
+print(find(object,2))
+print(find(object,7))
+print(find(object,1))
+print(find(object,3))
+
+
+
+inorder(object)
+                
+    
+
+            

@@ -1,0 +1,105 @@
+##########################Linked List in python#######################
+'''Link list ka logic ye hai ki
+1)Link list ke shuru mein insert karte waqt next ki value ko head rakho
+2)Link list ke last mein koi bhi value insert karne k liye next ki value ko none rakho
+3)Iterator ka jab bhi use karo toh uski value ko self.head set kar do aur fir next method ka use karr k traverse karo i.e iter.next() this will help to traverse the link list'''
+###Linked list mein agar ham gaur karein toh do object honge, ek hoga node object toh doosra linkedlist object##
+class Node:
+    def __init__(self,data=None, next=None):
+        #Har node k do part honge ek uska data, doosra wo store karega apne next element ka reference id
+        self.data=data
+        self.next=next
+#####################################################################################################        
+class LinkedList:
+    
+####################################################################################################
+    def __init__(self):
+        self.head=None  #Head variable points to the head of linklist
+
+####################################################################################################
+        
+        #Neeche diya gaya function ek data value lega aur usko linked list k sabse aage laga dega
+    def insert_at_beginning(self,data):
+        #AB data ko daalne k liye hamein ek node ki zaroorat paregi so chalo Node class ka object bana lete hain
+        node=Node(data,self.head)
+        #Ab aao samajhte hain ki yahan kya ho raha hai,yahan ye ho raha hai ki jab ham koi bhi naya node add karna chahte jo ki head node ho toh uske do args hain(upar wala function dekho) agar hamein jo bhi element add karna hai toh uske reference pointer ko next value na deke usi ka head de denge.
+        self.head=node
+        
+####################################################################################################
+    def printLinkList(self):
+        if self.head is None:
+            print("My Link List is empty")
+            return
+        
+        #If link list blank nai hai i.e usmein head waigarah hai toh ham iterator create karenge to switch to next node in linked list
+        
+        llstr=''
+        iterator=self.head
+        while iterator:
+            llstr+=str(iterator.data) +str(iterator.next)+ '---->'
+            iterator=iterator.next   #yani ki self.next k paas ja ra ek ek kar k ye last mein pahuch jayega
+            
+        print(llstr)
+#######################################################################################################
+    def insert_at_end(self,data):
+        if self.head is None:
+            self.head=Node(data,None)  #Yahan pe second arg ko None isliye rakha hai kyunki linklist ka akhri element kisi ko reference nai karta hai
+            return
+        
+        iterator=self.head  #Iterator ko current node pe rakha 
+        while iterator.next:
+            iterator=iterator.next
+            
+        #Upar wale k while loop ki wajah se control bilk last wale node tak aa jayega ab us node k element wale reference space ko null kar do
+        iterator.next=Node(data,None) #ye operation last wale element pe ho ra 
+
+#########################################################################################################
+    #################Agla function list of values lega aur usse link list banayega###################
+    def insert_values(self,data_list):
+        self.head=None  #Wiping out existing link list, if there is any
+
+        for data in data_list:
+            self.insert_at_end(data)
+#########################################################################################################
+    ################Next Function is function which tells the length of linklist###########
+    def get_length(self):
+        counter=0
+        
+        iterator=self.head
+        while iterator:
+            counter+=1
+            iterator = iterator.next
+            
+        return counter
+########################################################################################################
+    def remove_at(self,index):
+        if index<0 or index>self.get_length():
+            raise Exception("Invalid Index")
+        
+        if index==0: #If we are trying to remove the head 
+            self.head=self.head.next  #2nd node ki value ko aage wale node mein daal do 
+            return
+        
+        count=0
+        itr=self.head
+        while itr:
+            if count==index-1:
+                itr.next = itr.next.next
+                break
+            itr=itr.next
+            count+=1
+        
+        
+if __name__=='__main__':
+    ll=LinkedList()
+    '''
+    ll.insert_at_beginning(5)
+    ll.insert_at_beginning(89)
+    ll.insert_at_end(78)
+    ll.insert_at_end(79)
+    ll.printLinkList()
+    '''
+    ll.insert_values(["Amit","Ankit","Sumit","Negi"])
+    ll.remove_at(2)
+    ll.printLinkList()
+    print(ll.get_length())

@@ -1,0 +1,215 @@
+''''
+def operation(a,b):
+    print(a+b)
+    
+operation_copy=operation
+operation_copy(2,4)
+'''
+
+#Creating a list of function
+
+############################################Mapping in python########################################
+'''aksar aisa hota hai ki ham lists k saare elements ko koi doosre form mein convert karna chahte hain
+1)Jaise hamare paas ek list hai jiske saare elements ko ham double karna chahte hain.
+2)ya toh fir ham ek list jisme saare elements inch mein hain unko centimeters mein convert karna chahte hain
+3)Ya toh fir jab hamare paas ek dictionary ho jisme multiple key value pairs hain such as name,age,data aur hamein ek list banani ho jisme saare elements ke keval naam ho
+
+Third wale case mein hamara general approach ye hota hai ki ham , for loop chalayenge aur har element ko ek naye list mein store karayenge... ismein kafi lafda ho jata hai, the easy way is to use map
+
+map(function,list_passed)
+
+map mein second parameter is list which we will pass.
+and function which we want to apply on each element of that list
+
+map takes the each element of list and attaches it to the return value of that function
+
+'''
+####################################################################################################
+'''
+numbers_list=[0,1,2,3,4,5,6,7,8]
+
+def double_function(element_of_numbers_list):
+    return element_of_numbers_list*2
+
+modified_list=list(map(double_function,numbers_list))
+
+print(modified_list)
+
+'''
+###################################################################################################
+
+############################################# Filtering in python ################################
+'''Filter ka use wahana hota hai jahan hamein ek list ya dictionary k saare elements mein kuch filter lagana hota hai
+1)Jaise employees dictionary se un employees ko nikaalna jinki salary 2000 se zada ho.
+
+syntax: filter(some_function,my_list)
+
+Ab ek chiz sochne wali baat ye hai ki jab map aur filter ka syntax same hai toh fir farak kya hai
+Ans::: Farak ye hai ki map mein jo function hoga wo value return karta hai jo ki modified list mein add hoti hai jab ki filter mein function True ya False return karta hai jo ki ye decide karega ki whether to include the element in new modified list or not
+
+'''
+##################################################################################################
+'''
+numbers_list=[0,1,2,3,4,5,6,7,8]
+
+def prime_mumber_function(element_of_numbers_list):
+    if element_of_numbers_list%2==0:
+        return True
+    else:
+        return False
+
+modified_list=list(filter(prime_mumber_function,numbers_list))
+
+'''
+########################################## Lambdas in python ####################################
+'''upar ham dekh rae the ki hamein map aur filter use karne k liye ek function banana par ra tha, ab wo function chahe kitna hi chota/basic kyun na ho 
+
+Lambdas ka use kar k ham, ham chote functions ko ek hi line mein likh sakte
+
+syntax: lambda x,y:x+y
+i,.e input(list,variable):function(automatically returns so we dont need to use function)
+
+But lambda k saath ye masla hai ki, they can be only used with one liner function, i.e u cant even use if else
+
+lambda can be used inside map
+'''
+###################################################################################################
+'''
+numbers_list=[0,1,2,3,4,5,6,7,8]
+
+modified_list_double=list(map(lambda x:x*2,numbers_list))
+
+print(modified_list_double)
+'''
+###################################################################################################
+##List Comprehension
+'''
+numbers_list=[0,1,2,3,4,5,6,7,8]
+
+#For Map functionallity
+doubled=[x*2 for x in numbers_list]
+print(doubled)
+
+#For Filter functionallity
+even=[x for x in numbers_list if x%2==0]
+print(even)
+
+#Both Mapping and Filtering at same time
+doubles_of_even_numbers=[x*2 for x in numbers_list if x%2==0]
+print(doubles_of_even_numbers)
+'''
+
+################################## Reduce ########################################################
+'''
+Reduce bahut hi useful feature hai, iska use mostluy hota hai jab hamein maan lo ek list ka sum nikalna hai, ab hamein har baar ek value accumulate karni hoti hai jaise
+
+[0,1,2,3,4,5,6,7]
+
+ab ham jab sum nikalte hain toh hamein 
+pichle elements ka sum chahiye rahta yaani ki unke sum mein ham current element ka sum add karte hain,
+toh aise programm ko banana bada mushkil hota hai.
+But Reduce ka use kar ke ham badi easily isey solve kar sakte hain
+
+iska dhyaan se logic samajhna: socho tum piche k indexes mein kuch bhi operation kar k value returm kar sakte ho aur uso current element se operation karwa sakte ho..... kind of ye sliding window bhi follow kar ra
+
+ismein jo value return hoti hai function ke dwara woh pichle operations ki value hoti hai
+
+Syntax:::
+
+import functools
+from functools import reduce
+
+sum=reduce(function,list_passed,0)
+#Third digit is index from which we need to start
+'''
+###################################################################################################
+'''
+from functools import reduce
+
+numbers_list=[0,1,2,3,4,5,6,7,8]
+
+
+def get_sum(accumulation,x):
+    print(f'accumulation is {accumulation},x is {x}')
+    return accumulation+x #accumulation means pichle element ka sum store hota ja ra accumulation mein
+
+sum_elements=reduce(get_sum,numbers_list,0)
+print(sum_elements)
+
+'''
+########################## Combining all the methods in one programm ####################
+'''
+employees=[
+{
+'name':'Jane',
+'salary':90000,
+'job_title':'developer'
+},
+{
+'name':'Bill',
+'salary':50000,
+'job_title':'writer'
+},
+{
+'name':'kathy',
+'salary':12000,
+'job_title':'executive'
+},
+{
+'name':'anna',
+'salary':10000,
+'job_title':'developer'
+},
+{
+'name':'dennis',
+'salary':95000,
+'job_title':'developer'
+},
+{
+'name':'Albert',
+'salary':70000,
+'job_title':'marketing_specialist'
+}
+]
+
+print(type(employees))
+
+#Take out all the developers in a list
+
+def is_developer(employees):
+        if employees['job_title']=='developer':
+            return employees
+#Below code will give us developer dictionary
+developer_list=list(filter(is_developer,employees))
+#_______________________________________________________________________________________
+#We can also use : developer_list=[x for x in employees if is_developer(x)]
+#_______________________________________________________________________________________
+print(developer_list)
+
+#Ab hamein sabhi developers ki salary chahiye
+
+def get_salary(developer_list):
+    return developer_list['salary']
+print("__________________________________________")
+salary=list(map(get_salary,developer_list))
+#_______________________________________________________________________________________
+#We can also use : developer_list=[get_salary(x) for x in developers]
+#_______________________________________________________________________________________
+print(salary)
+print("___________________________________________")
+
+#Now lets find out the sum of salaries:
+
+def get_sum(acc,x):
+    return acc+x
+
+from functools import reduce
+
+sum_of_salary=reduce(get_sum,salary)
+print(sum_of_salary)
+
+avg_salry=sum_of_salary/3
+print(avg_salry)
+
+'''
+######################################Using List Comprehension##################################

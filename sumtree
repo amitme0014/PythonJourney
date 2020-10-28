@@ -1,0 +1,12 @@
+def sumsubtree(root):
+    if root is None:
+        return 0
+
+    return root.data + sumsubtree(root.left) + sumsubtree(root.right)
+    
+def isSumTree(root):
+    if (root.left is None) and (root.right is None):
+        return True
+    if root.data != (sumsubtree(root.left) + sumsubtree(root.right)):
+        return False
+    return isSumTree(root.left) and isSumTree(root.right)

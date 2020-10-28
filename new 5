@@ -1,0 +1,8 @@
+
+a=[10,2,6,8,7,3]
+
+###########0 se le k poore list k length tak jayega aur do do skip karega
+
+for i in range(0,len(a),2):
+  print(i)
+  
