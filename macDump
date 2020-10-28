@@ -1,0 +1,439 @@
+import calendar
+
+#Lets create a plain calendar, starts calendar with sunday
+
+c=calendar.TextCalendar(calendar.SUNDAY)
+st=c.formatmonth(2020,1,0,0)
+print(st)
+
+
+#The calendar provides useful utilities for given locale, such as day and month names
+for month in calendar.month_name:
+    print(month)
+
+print("****************************")
+
+for day in calendar.day_name:
+    print(day)
+
+#Calculate days based on rule: for example, consider a team meeting on the first friday of every month
+#To figure out what days that would be for each month.
+print("Team meetings will be on")
+#13 is non inclusive in this range
+for monthnumber in range(1,13):
+    #This will print weeks array list present in month
+    cal=calendar.monthcalendar(2018,monthnumber)
+
+#This will store first week into weekone variable and weektwo in weektwo variable
+    weekone=cal[0]
+    weektwo=cal[1]
+
+    if weekone[calendar.FRIDAY]!=0:
+        meetday=weekone[calendar.FRIDAY]
+#        print(meetday)
+    else:
+        meetday=weektwo[calendar.FRIDAY]
+#        print(meetday)
+
+#    print(calendar.month_name[monthnumber])
+#    print(meetday)
+    print("%10s %2d" % (calendar.month_name[monthnumber],meetday))
+
+
+##################################################################################
+
+import datetime;
+from datetime import timedelta;
+
+def function():
+
+#################printing normal date and time#############################################
+    print(datetime.datetime.now())
+    print(datetime.datetime.today())
+###############################Date Formatting######################################
+    print("%y-year %a-weekday %b-month %d-day of month %c- Local date and time %x- Local Date %X-Local time")
+    print(datetime.datetime.now().strftime("%a,%d,%b,%a"))
+    print(datetime.datetime.now().strftime("Local date and time is :  %c" ))
+    print(datetime.datetime.now().strftime("Local date is : %x"))
+    print(datetime.datetime.now().strftime("Local time: %X"))
+
+############Time Formatting######################################333
+    print("%I/%H - 12/24 Hour, %M- Minute, %S -Second, %p- locales's AM,PM")
+    print(datetime.datetime.now().strftime("Current time is %I:%M:%S:%p"))
+    print(datetime.datetime.now().strftime("Current time in 24 hours format is  %H:%M:%S:%p"))
+
+
+###############################################################################################################################################
+
+###########################################################    Using timedelta   #############################################################
+
+#Constructing a basic timedelta and print it
+    print(timedelta(days=365, hours=5, minutes=1))
+
+#Storing current datetime
+    print("Afer one year from today date will be : " + str(datetime.datetime.now()+timedelta(days=365)))
+    print("In 2 days and 3 weeks will be "+str(datetime.datetime.now()+timedelta(days=2, weeks=3)))
+    print("One week ago date was" + str(datetime.datetime.now()-timedelta(weeks=1)))
+
+
+
+
+###############Calling function###################################
+function()
+##########################################################################################
+
+{"isbn": "123-456-222",
+ "author":
+    {
+      "lastname": "Doe",
+      "firstname": "Jane"
+    },
+"editor":
+    {
+      "lastname": "Smith",
+      "firstname": "Jane"
+    },
+  "title": "The Ultimate Database Study Guide",
+  "category": ["Non-Fiction", "Technology"]
+ }
+
+#########################################################################################
+import requests
+from bs4 import BeautifulSoup
+
+url = 'http://quotes.toscrape.com/'
+response=requests.get(url)
+## The below command will return the html parser page
+print("**************************************************")
+print(response.text)
+## In below line we are telling to convert the response into text and use lxm parser
+soup=BeautifulSoup(response.text, 'lxml')
+print("*************************************************")
+print(soup)
+
+#Ab ham HTML elements se data extract karenge, kis element se data extract karna hai, ye pata karne k liye ham cursor use kar sakte hain aur inspect element kar sakte
+#hain browser mein
+# soup.find_all method ka use kar k html element ko chaant sakte
+quotes=soup.find_all('span', class_='text')
+
+#Abhi ye saara span wala html element print karega, hamein kewal txt chahiye toh ham iterate kar k text lenge
+print("*************************************************************")
+print(quotes)
+
+#Ab ham iterate karayenge to just get text values
+print("******************************************************************")
+
+for quote in quotes:
+  print(quote.text)
+
+############################################################################################
+import urllib
+import json
+from urllib import request
+
+id = int(input("Enter the id for which you want to get the title"))
+
+
+def function():
+  weburl = request.urlopen('https://jsonplaceholder.typicode.com/posts')
+  print(str(weburl.getcode()))
+  statusCode = weburl.getcode()
+  print(statusCode)
+
+  if statusCode == 200:
+    print("status code is 200")
+    jsonfiledata = weburl.read()
+    print(jsonfiledata)
+
+    # Neeche diye gaye command se string object jo ki jsonfiledata hai wo
+    # dictionary mein convert ho jayega
+
+    '''Dekho neeche ek khela ye hai ki, jsondata mein actually jo bhi json hai, wo ek list k form mein hai
+    jiske andar dictionary hai, toh ab hamein pahle list ke elements ki ginti jaan ni paregi, yaani ki kitni dictionary hai 
+    fir usmein iterate kara ke ham items() method ki madad se saare element print karwa denge.'''
+    jsondata = json.loads(jsonfiledata)
+    count = len(jsondata)
+    print(count)
+    print(type(count))
+
+    rangeval = range(count)
+
+    for i in rangeval:
+
+      # Iterating over a dictionary
+      for (key, value) in jsondata[i].items():
+        # print("key: " + key)
+        # print("---------------------------------------")
+        # print('value: ' + str(value))
+        print(key + " : " + str(value))
+        print("******************************************")
+
+
+  else:
+    print("status code is not 200")
+
+
+'''The below function will take an id and print the book title from json data'''
+def function1(id):
+  print("Details for entered id is " + str(id))
+  weburl = request.urlopen('https://jsonplaceholder.typicode.com/posts')
+  print(str(weburl.getcode()))
+  statusCode = weburl.getcode()
+  print(statusCode)
+
+  if statusCode == 200:
+    print("status code is 200")
+    jsonfiledata = weburl.read()
+    print(jsonfiledata)
+
+    # Neeche diye gaye command se string object jo ki jsonfiledata hai wo
+    # dictionary mein convert ho jayega
+
+    '''Dekho neeche ek khela ye hai ki, jsondata mein actually jo bhi json hai, wo ek list k form mein hai
+    jiske andar dictionary hai, toh ab hamein pahle list ke elements ki ginti jaan ni paregi, yaani ki kitni dictionary hai 
+    fir usmein iterate kara ke ham items() method ki madad se saare element print karwa denge.'''
+    jsondata = json.loads(jsonfiledata)
+    count = len(jsondata)
+    print(count)
+    print(type(count))
+
+    rangeval = range(count)
+
+    #for i in rangeval:
+    print(type(id))
+
+      # Iterating over a dictionary
+    for (key, value) in jsondata[id-1].items():
+        # print("key: " + key)
+         #print("---------------------------------------")
+         #print('value: ' + str(value))
+
+         #print(key + " : " + str(value))
+         print("******************************************")
+
+    print("title of book with id no. "+str(id)+" is : "+jsondata[id]["title"])
+  else:
+    print("status code is not 200")
+
+
+function()
+function1(id)
+################################################################################################
+import urllib
+from urllib import request
+import json
+
+def function():
+    #This will open the url
+    webUrl=request.urlopen("https://jsonplaceholder.typicode.com/posts")
+    #webUrl.getcode results HTTP status code
+    print("HTML Response: " + str(webUrl.getcode()))
+    #data ha json object
+    data=webUrl.read()
+  #  print(data)
+
+
+    # Use the json module to load the string into dictionary
+    #jsonVar=json.loads(data)
+
+    file=open("/Users/amitsingh/Desktop/pythonPractice/dummy.json",'r')
+    data=file.read()
+    #print(data)
+
+    jsondata=json.loads(data)
+    print("__________________________________________________")
+    print(jsondata)
+    print("__________________________________________________")
+    print("Value of isbn key is " + str(jsondata["isbn"]))
+    print("Value of editor key is " + str(jsondata["editor"]))
+    print("Value of editor key is " + str(jsondata["editor"]["lastname"]))
+    print("______________________________________________________________________")
+
+    ################# Lets loop over an index and print the details ##############
+
+    for (key,value) in jsondata.items():
+      print("key:"+key)
+      print("value:"+str(value))
+
+
+
+
+
+
+
+
+  #  with file as jsonblocks:
+      #jsonblocksvalue=json.load(jsonblocks)
+     # print(jsonblocks)
+    # Use the json module to load the string into dictionary
+
+
+function()
+############################################################################################
+
+import urllib
+from urllib import request
+import json
+
+def function():
+    #This will open the url
+    webUrl=request.urlopen("https://jsonplaceholder.typicode.com/posts")
+    #webUrl.getcode results HTTP status code
+    print("HTML Response: " + str(webUrl.getcode()))
+    #data ha json object
+    data=webUrl.read()
+  #  print(data)
+
+
+    # Use the json module to load the string into dictionary
+    #jsonVar=json.loads(data)
+
+    file=open("/Users/amitsingh/Desktop/pythonPractice/dummy.json",'r')
+    data=file.read()
+    #print(data)
+
+    jsondata=json.loads(data)
+    print("__________________________________________________")
+    print(jsondata)
+    print("__________________________________________________")
+    print("Value of isbn key is " + str(jsondata["isbn"]))
+    print("Value of editor key is " + str(jsondata["editor"]))
+    print("Value of editor key is " + str(jsondata["editor"]["lastname"]))
+    print("______________________________________________________________________")
+
+    ################# Lets loop over an index and print the details ##############
+
+    for (key,value) in jsondata.items():
+      print("key:"+key)
+      print("value:"+str(value))
+
+
+
+
+
+
+
+
+  #  with file as jsonblocks:
+      #jsonblocksvalue=json.load(jsonblocks)
+     # print(jsonblocks)
+    # Use the json module to load the string into dictionary
+
+
+function()
+############################################################################################
+import pandas as pd
+from openpyxl.workbook import Workbook
+
+
+def function():
+  excel_file = pd.read_excel("/Users/amitsingh/Desktop/pythonPractice/files/regions.xlsx")
+  csv_file = pd.read_csv("/Users/amitsingh/Desktop/pythonPractice/files/Names.csv", header=None)
+  txt_file = pd.read_csv("/Users/amitsingh/Desktop/pythonPractice/files/data.txt", delimiter='\t')
+
+  csv_file.columns = ['First', 'Last', 'Address', 'City', 'Town', 'State', 'Income']
+
+#  print(excel_file)
+#  print("*******************************************************************************")
+#  print(csv_file)
+#  print("*******************************************************************************")
+#  print(txt_file)
+
+  # This will modify the filename and add a new file with column header
+  csv_file.to_excel("modified.xlsx")
+
+  # Now lets find the value from column of excel sheet
+  print("*******************************************************************")
+  print(csv_file['First']) #Print the values from column whose name is First
+  print("*******************************************************************")
+  print(csv_file['City'])  #Print the values from column whose name is City
+  print("*******************************************************************")
+  print(csv_file[['City','First']]) #Printing the First Column and City
+  print("*******************************************************************")
+  print(csv_file[['City', 'First']][0:3])  # Printing the First 3 Column and City
+
+
+  print("*******************************************************************")
+  ### To iterate through dataframe, we use iloc[index] ###
+  print(csv_file.iloc[1])   #This will pint the row at index 1 i.e it will print all the values from first row
+  print("*****************************************************************************************************")
+  print(csv_file.iloc[5])   #This will pint the row at index 5 i.e it will print all the values from fourth row
+  print("******************************************************************************************************")
+######### iloc[x][y] ka use kar ke ham particular value print kara sakte hain, remember its it starts with 0
+  print(csv_file.iloc[1][3])
+  ### Below line helps to replace the vaules in excel sheet
+  csv_file['First'].replace('John','Amit',inplace=True)
+  ## Below command will show that value of John has changed with Amit
+  print(csv_file['First'])
+  print("******************************************************************************************************")
+
+  ## Print row details which have Riverside as city
+  ## Ye dhyan rakhna ki ismein iloc ka nai loc ka use hua hai
+  print(csv_file.loc[csv_file['City'] == "Riverside"])
+  print("*********************************************************************************************************")
+  #Ab aggar multiple condition lagani ho
+  print(csv_file.loc[(csv_file['City'] == "Riverside") & (csv_file['Address'] == "120 jefferson st.")])
+  print("***************************************************************************")
+
+
+  ### Now lets try to use lambda function to apply operation, ham log Area code ko Tax slab maan lete, ab hamein condition lagani hai ki,
+  ### agar kisi ka paisa itna ho toh, woh is tax slab mein, agar kisi ka isse kam ho toh wo is tax slab mein, neeche wala code ek naya column
+  ##add kar dega, with the name of Tax, jisme calculation diya raega
+
+  csv_file['Tax %'] = csv_file['Income'].apply(lambda element: .15 if 10000 < element < 40000 else .2 if 40000 < element <80000 else 0.25)
+  print(csv_file)
+
+  csv_file['Taxes owned'] = csv_file['Income'] *  csv_file['Tax %']
+  print(csv_file['Taxes owned'])
+function()
+###################################################################################################
+
+import shutil
+from shutil import make_archive
+import os
+from os import path
+from zipfile import ZipFile
+
+################## Lets copy the textfile.txt from one place to another ##################
+def function():    
+    if path.exists("textfile.txt"):
+             src=path.realpath("textfile.txt")    
+              dst=src+".backup"
+##################### Copies the file without metadata #################################
+        shutil.copy(src,dst)
+##################### Below command copies the file with metadata i.e same time etc ######################
+       shutil.copystat(src,dst)
+##################### Renaming the file ######################################
+#       os.rename("textfile.txt","name_changed_textfile.txt")
+##################### Lets try to create a zip file #########################
+             root_dir, tail = path.split(src)
+         print(root_dir)
+         print(tail)
+         make_archive("archive","zip",root_dir)
+############################ Using Zip file to add selected files #################
+        with ZipFile("testzip.zip","w") as newzip:
+            newzip.write("textfile.txt")
+function()
+####################################################################################################
+
+import  subprocess
+
+for i in range(0,5):
+  print("*****************************")
+  ## subprocess module se koi bhi terminal command ko call kiya ja sakta hai baba samjhe ##
+  subprocess.check_call(['ls','-all'])
+
+
+#####################################################################################################
+# Download the Pluralsight 'we are one' video
+# url of video
+import youtube_dl
+import pafy
+#url = "https://www.youtube.com/watch?v=TgRwoBgPM0o"
+url= 'https://www.linkedin.com/learning/using-python-with-excel/using-openpyxl-with-workbooks?autoplay=true'
+# create video object
+video = pafy.new(url)
+# extract information about best resolution video available
+bestResolutionVideo = video.getbest()
+# download the video
+bestResolutionVideo.download()
